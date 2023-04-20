@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lulu.mapper.BookMapper">
+<!--    <select id="selectAll" resultType="Book">-->
+<!--        select *-->
+<!--        from bkinfo;-->
+<!--    </select>-->
+<!--    <select id="selectById" resultType="Book">-->
+<!--        select *-->
+<!--        from bkinfo-->
+<!--        where bkId = #{bkId};-->
+<!--    </select>-->
+<!--    <select id="selectByCondition" resultType="Book">-->
+<!--        select *-->
+<!--        from bkinfo-->
+<!--        where bkType like #{bkType} and bkName like #{bkName};-->
+<!--    </select>-->
+<!--    动态条件查询-->
+        <select id="selectByCondition" resultType="Book">
+            select *
+            from bkinfo
+            <where>
+                <if test="bkType != null and bkType != ''">
+                    and bkType like #{bkType}
+                </if>
+                <if test="bkName != null and bkName != ''">
+                    and bkName like #{bkName}
+                </if>
+            </where>
+        </select>
+    <select id="selectBySingleCondition" resultType="Book">
+        select *
+        from bkinfo
+        <where>
+           <choose>
+               <when test="bkType != null and bkType != ''">
+                    bkType like #{bkType}
+               </when>
+               <when test="bkName != null and bkName != ''">
+                    bkName like #{bkName}
+               </when>
+            </choose>
+        </where>
+    </select>
+<!--    添加数据并返回主键-->
+    <insert id="add" useGeneratedKeys="true" keyProperty="bkId">
+        insert into bkinfo(bkName,bkAuthor,bkCountry,bkType,bkStockNum,bkPrice,bkSellDate)
+        values (#{bkName},#{bkAuthor},#{bkCountry},#{bkType},#{bkStockNum},#{bkPrice},#{bkSellDate});
+    </insert>
+<!--    修改数据并返回行数-->
+    <update id="update">
+    update bkinfo
+    <set>
+        <if test="bkName  != null and bkName != ''">
+            bkName = #{bkName},
+        </if>
+        <if test="bkAuthor != null and bkAuthor != ''">
+             bkAuthor =  #{bkAuthor},
+        </if>
+        <if test="bkCountry != null and bkCountry != ''">
+            bkCountry = #{bkCountry},
+        </if>
+        <if test="bkType != null and bkType != ''">
+             bkType =   #{bkType},
+        </if>
+        <if test="bkPrice != null">
+            bkPrice =  #{bkPrice},
+        </if>
+        <if test="bkStockNum != null">
+            bkStockNum =#{bkStockNum},
+        </if>
+        <if test="bkSellDate != null">
+            bkSellDate =#{bkSellDate},
+        </if>
+        <if test="bkPicName != null and bkPicName != ''">
+            bkPicName = #{bkPicName},
+        </if>
+        <if test="bkStatus != null and bkStatus != ''">
+            bkStatus = #{bkStatus},
+        </if>
+        <if test="bkDesc != null and bkDesc != ''">
+            bkDesc =  #{bkDesc}
+        </if>
+    </set>
+    where bkId = #{bkId};
+    </update>
+
+<!--    <delete id="deleteById">-->
+<!--        delete-->
+<!--        from bkinfo-->
+<!--        where bkId = #{bkId};-->
+<!--    </delete>-->
+<!--    collection为paras注解，即map集合默认key的名称,item为数组内容，用，分割-->
+    <delete id="deleteByIds">
+        delete
+        from bkinfo
+        where bkId
+        in
+            <foreach collection="bkIds" item="bkId" separator="," open="(" close=")">
+                #{bkId}
+            </foreach>
+        ;
+    </delete>
+</mapper>

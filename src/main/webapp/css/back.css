@@ -1,0 +1,108 @@
+@charset"UTF-8";
+
+#bookdetail{
+    text-align: center;
+    border:2px red solid;
+    float: right;
+    width: inherit;
+    padding: 10px 10px 20px 10px;
+    overflow: hidden;
+}
+
+#quesitionlist {
+    text-align: center;
+    float: right;
+    width: auto;
+    margin-right: 200px;
+    margin-top: 50px;
+    overflow: hidden;
+    /* border:2px red solid; */
+}
+
+table tr:first-of-type {
+    background-color: rgb(153, 179, 162);
+    font: normal 700 16px "Microsoft Yahe";
+}
+
+
+#container {
+    width: 980px;
+    margin: 0px auto;
+}
+
+#header {
+    background: url("../image/head.png");
+    width: 100%;
+    height: 150px;
+    background-repeat: no-repeat;
+}
+
+/* 设置上导航栏的样式 */
+#menu  {
+    overflow: hidden;
+    background-color: rgb(146, 160, 146);
+    color: rgb(23, 112, 53);
+  }
+  
+  /* 设置 topnav 链接的样式 */
+#menu  a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 40px;
+    text-decoration: none;
+  }
+  
+  /* 改变鼠标悬停时的颜色 */
+#menu  a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+
+
+
+#main {
+    /*背景复合写法：颜色 图片 平铺 滚动 位置*/
+    background-image: url("https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fitem%2F201807%2F09%2F20180709211530_bgonp.thumb.1000_0.jpg&refer=http%3A%2F%2Fc-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1652990264&t=29c14af6d7ebef2b45fbfb7fcf587842");
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: auto;
+    width: 100%;
+    height: 600px;
+    text-align: center;
+}
+
+.sidebar {
+    /*背景复合写法：颜色 图片 平铺 滚动 位置*/
+    background: url("../image/girl.png") no-repeat bottom;
+    background-clip:border-box;
+    border:30px solid transparent;
+    border-image: url("../image/b488c629a993d4d81daff5b03f2da97d.png") 36 round;
+    float: left;
+    width:20%;
+    text-align: center;
+    height: 540px;
+    font-weight: 700;
+}
+
+.content {
+    padding: 10px 10px 20px 10px;
+    float: right;
+    width: 60%;
+    height: inherit;
+    text-align: left;
+    overflow: hidden;
+}
+
+a{
+    color: rgb(28, 88, 46);
+}
+
+#transpage{
+    vertical-align: center;
+    color:rgb(54, 110, 54);
+    font: normal 700 16px 'Microsoft yahe';
+    display: inline-block; 
+    margin-top: 20px;
+}

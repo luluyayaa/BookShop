@@ -1,0 +1,91 @@
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>LUNA的书店</title>
+    <link rel="stylesheet" type="text/css" href="../css/back.css" charset="utf-8">
+    <link rel="stylesheet" href="../css/iconfont.css">
+</head>
+
+<body>
+<div id="header">
+</div>
+<div id="menu">
+    <a href="#"><span class="iconfont icon-a-caozhiwu"></span>后台管理首页</a>
+    <a href="#"><span class="iconfont icon-a-guoshushuzhiwu"></span>书本信息管理</a>
+    <a href="#"><span class="iconfont icon-a-huahuaduopenzaizhiwu"></span>用户订单管理</a>
+    <a href="#"><span class="iconfont icon-a-huahuaduozhiwu"></span>注册用户管理</a>
+    <a href="#"><span class="iconfont icon-a-lvsedeshumuzhiwu"></span>管理员设置</a>
+    <a href="#"> <span class="iconfont icon-a-shushumuzhiwu"></span>管理员退出</a>
+</div>
+<div id="main">
+    <div class="content">
+        <table style="margin-top: 40px;">
+            <p style="text-indent:70px; font: 700 18px 'Microsoft yahe';">书籍信息查询:详细</p>
+            书籍名称：<input name="bkName" value="${book.bkName}"/>
+            <p>作&nbsp; &nbsp; &nbsp; &nbsp;者：<input name="bkAuthor" value="${book.bkAuthor}"/></p>
+            <p>
+                国籍/地区：
+                <select name="bkCountry" value="${book.bkCountry}">
+                    <option>中国</option>
+                    <option>法国</option>
+                    <option>英国</option>
+                    <option>日本</option>
+                </select>
+            </p>
+            <p>
+                书本类型：<span name="bkType" value="${book.bkType}">
+                        <input type="checkbox"/>任意类型
+                        <input type="checkbox"/>心理
+                        <input type="checkbox"/>商贸
+                        <input type="checkbox"/>哲学<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox"/>人文&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox"/>专业
+                        <input type="checkbox"/>小说
+                        <input type="checkbox"/>社会
+                    </span>
+            </p>
+            <p>
+                库存数量：<input type="text" name="bkStockNum" value="${book.bkStockNum}" />
+            </p>
+            <p>
+                书本价格：<input type="text" name="bkPrice" value="${book.bkPrice}"/>
+            </p>
+            <p>
+                发行日期：<input name="bkSellDate" value="${book.bkSellDate}"/>【格式:YYYY-MM-DD】
+            </p>
+            <p></p>
+            <div>
+                <div style="float:left;vertical-align: middle;">
+                    介绍描述：<textarea rows="5" cols="40" name="bkDesc" value="${book.bkDesc}"></textarea>
+
+                </div>
+                <div style="float:left;">
+                    <img src="../image/book1.jpeg" style="width: 120px; height: 140px; margin-left: 50px;" />>
+                </div>
+            </div>
+            <input type="button" value="修改信息" style="margin-right: 20px; margin-left: 80px;">
+            <a href="backlist.html">
+                <input type="button" value="返回列表"></a>
+        </table>
+    </div>
+    <!-- 侧边表单 -->
+    <div class="sidebar ">
+        <form align="center ">
+            <p>书籍信息查询</p>
+            <p>书籍信息录入</p>
+        </form>
+    </div>
+</div>
+</body>
+<script>
+    document.querySelector("#update").onclick = function() {
+        location.href="/JSPDemo/updateServlet"
+    }
+</script>
+</html>

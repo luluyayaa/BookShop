@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>LUNA的书店</title>
+    <link rel="stylesheet" type="text/css" href="../css/back.css" charset="utf-8">
+    <link rel="stylesheet" href="../css/iconfont.css">
+</head>
+
+<body>
+    <div id="header"> 
+    </div>
+    <div id="menu">
+        <a href="#"><span class="iconfont icon-a-caozhiwu"></span>后台管理首页</a>
+        <a href="#"><span class="iconfont icon-a-guoshushuzhiwu"></span>书本信息管理</a>
+        <a href="#"><span class="iconfont icon-a-huahuaduopenzaizhiwu"></span>用户订单管理</a>
+        <a href="#"><span class="iconfont icon-a-huahuaduozhiwu"></span>注册用户管理</a> 
+        <a href="#"><span class="iconfont icon-a-lvsedeshumuzhiwu"></span>管理员设置</a>
+        <a href="#"> <span class="iconfont icon-a-shushumuzhiwu"></span>管理员退出</a>
+        </div>
+    <div id="main">
+        <div id="quesitionlist">
+            <p style="font-weight: bold;">查询结果列表</p>
+            <table id="bookTable">
+            </table>
+
+            <div id="transpage">
+                <p>上一页<span style="margin-left: 20px;margin-right: 20px; ">[1]</span>下一页<span style="margin-left: 20px; ">修改查询条件</span></p>
+            </div>
+        </div>
+        <!-- 侧边表单 -->
+        <div class="sidebar">
+            <form align="center ">
+                <p>书籍信息查询</p>
+                <p>书籍信息录入</p>
+            </form>
+        </div>
+    </div>
+    <script src="../js/axios-0.18.0.js"></script>
+    <script>
+        //页面加载后发送ajax请求
+        window.onload = function() {
+            //发送请求
+            axios({
+                method:"get",
+                url : "http://localhost:8081/JSPDemo/aSelectAllServlet"
+            }).then(function(resp){
+                //获取数据
+                let books = resp.data;
+                let tableData = " <tr>\n" +
+                    "                <td><input type=\"checkbox\"></td>\n" +
+                    "                <td>书籍编号</td>\n" +
+                    "                <td>书籍名称</td>\n" +
+                    "                <td>作者</td>\n" +
+                    "                <td>国籍</td>\n" +
+                    "                <td>类型</td>\n" +
+                    "                <td>库存量</td>\n" +
+                    "                <td colspan=\"3\">操作</td>\n" +
+                    "            </tr>";
+                for(let i = 0; i < books.length ; i++) {
+                    let book = books[i];
+                    tableData += "                <tr align=\"center\">\n" +
+                        "                    <td><input type=\"checkbox\"></td>\n" +
+                        "                    <td>"+(i+1)+"</td>\n" +
+                        "                    <td>"+book.bkName+"</td>\n" +
+                        "                    <td>"+book.bkAuthor+"</td>\n" +
+                        "                    <td>"+book.bkCountry+"</td>\n" +
+                        "                    <td>"+book.bkType+"</td>\n" +
+                        "                    <td>"+book.bkStockNum+"</td>\n" +
+                        "                    <td><a href=\"/JSPDemo/selectByIdServlet?bkId="+(i+1)+"\">修改</a> <a href=\"/JSPDemo/deleteByIdServlet?bkId="+(i+1)+"\">删除</a></td>\n" +
+                        "                </tr>";
+                }
+                // 设置表格数据
+                document.getElementById("bookTable").innerHTML = tableData;
+            })
+        }
+    </script>
+</body>
+
+</html>
